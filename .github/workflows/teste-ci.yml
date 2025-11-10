@@ -1,4 +1,4 @@
-name: Test CI - Cypress 
+name: Test CI - Cypress 🧪
 
 on:
   push:
@@ -6,11 +6,10 @@ on:
 
 jobs:
   build:
-    
     runs-on: ubuntu-latest
 
     steps:
-      
+     
       - uses: actions/checkout@v4
       
       
@@ -18,15 +17,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          
           cache: 'npm'
 
       
       - name: Instalar Dependencias
-        
         run: npm install
 
-      
       - name: Executar Testes Cypress
         
         run: npx cypress run
+
+     
+      - name: Gerar Relatorio Allure 
+        run: npm run report:generate 
+    
+
+    
+      - name: Publicar relatorio no Gh Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+          publish_dir: ./public
