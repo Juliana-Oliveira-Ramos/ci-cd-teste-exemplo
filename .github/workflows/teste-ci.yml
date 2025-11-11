@@ -32,9 +32,10 @@ jobs:
         run: npm run report:generate 
     
 
-    
+
       - name: Publicar relatorio no Gh Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: ./allure-report
