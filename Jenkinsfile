@@ -20,6 +20,15 @@ pipeline{
         }
     }
 
+    post{
+        sucess{
+            echo'Build e testes executados com sucesso'
+        }
+        failure{
+            echo'Falha ao executar'
+        }
+    }
+
 
 
 
